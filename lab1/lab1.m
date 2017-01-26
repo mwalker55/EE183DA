@@ -31,7 +31,7 @@ end
 %effector in base reference frame as a function of all dH parameters, with
 %only [theta1 theta2 theta3 theta4] being variable
 
-%extracting the desired operational state variables from full transform matrix as
+%extracting the desired free variables from full transform matrix as
 %described in report
 op_space_sym = [t_mat_sym(1,4);
             t_mat_sym(2,4);
@@ -39,7 +39,7 @@ op_space_sym = [t_mat_sym(1,4);
             atan2(t_mat_sym(3,2), t_mat_sym(3,3));
             atan2(-t_mat_sym(3,1), sqrt(t_mat_sym(3,2)^2+t_mat_sym(3,3)^2));
             atan2(t_mat_sym(2,1), t_mat_sym(1,1))];
-%creates Jacobian of operational state variables with respect to four configuration
+%creates Jacobian of free variables with respect to four configuration
 %state variables; top 3 rows will be linear velocity Jacobian and bottom 3
 %rows will be angular velociy Jacobian
 jac = jacobian(op_space_sym, [theta1 theta2 theta3 theta4]);        
@@ -53,12 +53,14 @@ dH_real_init = [0 pi/2 pi/3 0;
 %uses forward kinematics result to compute position and orientation of end effector based on DH parameters       
 op_space_real_init = double(subs(op_space_sym, [dH_sym vertcat(alpha0, zeros(3,1)) vertcat(a0, zeros(3,1))], [dH_real_init zeros(4,2)]));
 
-%six operational state variables of desired endpoint for inverse kinematics
+%six free variables of desired endpoint for inverse kinematics
 op_space_real_final = [0.327750113113536;-0.0497483625439159;0.185755117771391;-0.555489147219452;-0.233603167177685;0.458872364063971];
-%defines the step for inverse kinematics
-dx = .001*(op_space_real_final - op_space_real_init);
 dH_real_final = dH_real_init;
-for i=1:1000 
+for i=1:200
+    %defines the step distance as a scale factor times linear difference
+    %between goal point and current position; scale is based on number of
+    %iterations remaining
+    dx = 1/(201-i)*(op_space_real_final-op_space_real_init);
     %multiplies inverse Jacobian evaluated at current configuration state
     %and multiplies it by step to get change in configuration state
     dq = pinv(double(subs(jac, [dH_sym vertcat(alpha0, zeros(3,1)) vertcat(a0, zeros(3,1))], [dH_real_final zeros(4,2)])))*dx;
@@ -67,4 +69,6 @@ for i=1:1000
     dH_real_final(2,3) = dH_real_final(2,3)+dq(2);
     dH_real_final(3,3) = dH_real_final(3,3)+dq(3);
     dH_real_final(4,3) = dH_real_final(4,3)+dq(4);
+    %updates current operational state for determining next dx
+    op_space_real_init = double(subs(op_space_sym, [dH_sym vertcat(alpha0, zeros(3,1)) vertcat(a0, zeros(3,1))], [dH_real_final zeros(4,2)]));
 end
