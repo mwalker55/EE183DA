@@ -19,7 +19,7 @@ Operation of the drum system is simple.  Assemble the system as shown in figure 
 
 In a web browser, connect to 192.168.4.1 (enter as URL).  You will be greeted with a splash screen introducing you the Arduino drum system.  A dropdown menu will let you navigate to the three functions of the drum, which I will detail below.
 ###Manual Control
-![manual_control]
+![manual_control]<br>
 *figure 2: screenshot of manual control page*
 This page allows you to manually control the drum.  If you press the "Drum" button, the servo will rotate to strike your drum target.
 ###Beat Synthesizer 
