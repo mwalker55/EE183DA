@@ -13,7 +13,7 @@ By default, the servo should be plugged into the D6 voltage, ground and PWM plug
 -1 Standard Micro Servo<br>
 -1 Servo Rotor Arm<br>
 -1 Metal Bracket<br>
--Electrical tape<br>
+-Electrical tape
 ##Operation
 Operation of the drum system is simple.  Assemble the system as shown in figure 1 and upload lab2.ino (found at the head of this repository) to the ESP8266.  A wifi network named "mark" should appear.  Connect to it with password "12345678".
 
