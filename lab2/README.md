@@ -7,13 +7,13 @@ The system mechanically is simple to setup.  Attach an object to a rotor arm on 
 *figure 1: picture of set up drum system on standard servo*
 By default, the servo should be plugged into the D6 voltage, ground and PWM plug.
 ##Bill of Materials
--1 ESP8266 Microcontroller
--1 ESP8266 Motor Shield
--Micro-USB Cable
--1 Standard Micro Servo
--1 Servo Rotor Arm
--1 Metal Bracket
--Electrical tape
+-1 ESP8266 Microcontroller<br>
+-1 ESP8266 Motor Shield<br>
+-Micro-USB Cable<br>
+-1 Standard Micro Servo<br>
+-1 Servo Rotor Arm<br>
+-1 Metal Bracket<br>
+-Electrical tape<br>
 ##Operation
 Operation of the drum system is simple.  Assemble the system as shown in figure 1 and upload lab2.ino (found at the head of this repository) to the ESP8266.  A wifi network named "mark" should appear.  Connect to it with password "12345678".
 
