@@ -3,8 +3,8 @@
 This is the Github page for the Arduino drum system based on the ESP8266 made for EE183DA Winter 2017 at UCLA taught by Professor Ankur Mehta.
 ##Mechanical Description
 The system mechanically is simple to setup.  Attach an object to a rotor arm on a standard servo and place it a small distance from an object which it will strike against.  A sample picture is shown below.<br><br>
-![alt text][setup]<br><br>
-*figure 1: picture of set up drum system on standard servo*<br>
+![alt text][setup]<br>
+*figure 1: picture of set up drum system on standard servo*<br><br>
 By default, the servo should be plugged into the D6 voltage, ground and PWM plug.  You will need some object to hit the drum stick against to generate noise - I used a soda can.  There is also a question of mounting the servo close to the object - I held it with my hand, but an actual mount is preferable.
 ##Bill of Materials
 -1 ESP8266 Microcontroller<br>
