@@ -3,7 +3,7 @@
 This is the Github page for the Arduino drum system based on the ESP8266.
 ##Mechanical Description
 The system mechanically is simple to setup.  Attach an object to a rotor arm on a standard servo and place it a small distance from an object which it will strike against.  A sample picture is shown below.
-![alt text][setup]
+![alt text][setup]<br>
 *figure 1: picture of set up drum system on standard servo*
 By default, the servo should be plugged into the D6 voltage, ground and PWM plug.
 ##Bill of Materials
