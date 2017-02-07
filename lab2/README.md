@@ -16,9 +16,9 @@ By default, the servo should be plugged into the D6 voltage, ground and PWM plug
 -Electrical tape<br>
 -1 Empty Soda Can
 ##Operation
-Operation of the drum system is simple.  Assemble the system as shown in figure 1 and upload lab2.ino (found at the head of this repository) to the ESP8266.  A wifi network named "mark" should appear.  Connect to it with password "12345678".
+Operation of the drum system is simple.  Assemble the system as shown in figure 1, connect the servo to D6, and upload lab2.ino (found at the head of this repository) to the ESP8266.  A wifi network named "mark" should appear.  Connect to it with password "12345678".
 
-In a web browser, connect to 192.168.4.1/index (enter as URL).  You will be greeted with a splash screen introducing you the Arduino drum system.  A dropdown menu will let you navigate to the three functions of the drum, which I will detail below.
+In a web browser, enter as a URL 192.168.4.1/index.  You will be greeted with a welcome screen introducing you the Arduino drum system.  A dropdown menu will let you navigate to the three functions of the drum, which I will detail below.
 ###Manual Control
 ![alt text][manual_control]<br>
 *figure 2: screenshot of manual control page*<br>
@@ -38,6 +38,8 @@ The below video demonstrates the Arduino drum system in action.  In the video, o
 
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/40Gdmw4ancg/0.jpg)](http://www.youtube.com/watch?v=40Gdmw4ancg)
 
+##Possible Improvements
+This system can be improved in a few ways.  For one, it can be extended to allow more than just one drum.  Another area for improvement would be to allow for beat/song creation in the web browser without needing the .ino source to be edited.
 
 [setup]: http://i.imgur.com/vAXYMOV.png
 [manual_control]: http://i.imgur.com/YlN8rpv.png
