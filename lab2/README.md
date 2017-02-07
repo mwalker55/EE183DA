@@ -33,7 +33,9 @@ Note: the pre-made beats can be changed by altering functions beat1() to beat5()
 *figue 4: screenshot of pre-made song page*<br>
 This page allows you to play the five pre-made songs made using the beats described above.  If you find a combination of beats in the synthensizer that you like, you can copy it to one of the functions song1() to song5() by calling the corresponding beat1() etc. functions to save it for future use.
 ##Demonstration
-The below video demonstrates the Arduino drum system in action.  In the video, one of the pre-made songs is being played by the drum.  The drum is hitting against 
+The below video demonstrates the Arduino drum system in action.  In the video, one of the pre-made songs is being played by the drum.  The drum is hitting against a soda can in the video.
+
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/40Gdmw4ancg/0.jpg)](http://www.youtube.com/watch?v=40Gdmw4ancg)
 
 
 [setup]: http://i.imgur.com/vAXYMOV.png
