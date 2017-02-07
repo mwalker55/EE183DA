@@ -1,6 +1,6 @@
 #Arduino Drum System
 ##Introduction
-This is the Github page for the Arduino drum system based on the ESP8266.
+This is the Github page for the Arduino drum system based on the ESP8266 made for EE183DA Winter 2017 at UCLA taught by Professor Ankur Mehta.
 ##Mechanical Description
 The system mechanically is simple to setup.  Attach an object to a rotor arm on a standard servo and place it a small distance from an object which it will strike against.  A sample picture is shown below.
 ![alt text][setup]<br>
