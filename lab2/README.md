@@ -5,7 +5,7 @@ This is the Github page for the Arduino drum system based on the ESP8266 made fo
 The system mechanically is simple to setup.  Attach an object to a rotor arm on a standard servo and place it a small distance from an object which it will strike against.  A sample picture is shown below.
 ![alt text][setup]<br>
 *figure 1: picture of set up drum system on standard servo*<br>
-By default, the servo should be plugged into the D6 voltage, ground and PWM plug.
+By default, the servo should be plugged into the D6 voltage, ground and PWM plug.  You will need some object to hit the drum stick against to generate noise - I used a soda can.  There is also a question of mounting the servo close to the object - I held it with my hand, but an actual mount is preferable.
 ##Bill of Materials
 -1 ESP8266 Microcontroller<br>
 -1 ESP8266 Motor Shield<br>
@@ -33,7 +33,7 @@ Note: the pre-made beats can be changed by altering functions beat1() to beat5()
 *figue 4: screenshot of pre-made song page*<br>
 This page allows you to play the five pre-made songs made using the beats described above.  If you find a combination of beats in the synthensizer that you like, you can copy it to one of the functions song1() to song5() by calling the corresponding beat1() etc. functions to save it for future use.
 ##Demonstration
-The below video demonstrates the Arduino drum system in action.  In the video, one of the pre-made songs is being played by the drum.
+The below video demonstrates the Arduino drum system in action.  In the video, one of the pre-made songs is being played by the drum.  The drum is hitting against 
 
 
 [setup]: http://i.imgur.com/vAXYMOV.png
