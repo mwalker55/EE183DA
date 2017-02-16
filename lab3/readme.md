@@ -15,8 +15,17 @@ When Joel's drum is stationary, the resistance in the vibration sensor is small 
 ![alt text][vib_s_table]<br>
 *figure Y: calibration table for vibration sensor*<br>
 When the analogRead() value is detected to have dropped significantly, Joel's drum is in motion and thus Mark's drum activates itself for one beat.<br>
+###Photodiode 
+
+##Operation
+###Joel's Drum
+Joel's drum serves as the reference drum for the jam band and thus is controlled in the same way as detailed [here](placeholderlink).
+###Mark's Drum
+Mark's drum is operated in a similar manner as [the original](https://github.com/mwalker55/EE183DA/tree/master/lab2).  The website's drop-down menu will contain one new option: jam band sensing.  On that page, hit "Sense" to begin sensing Joel's drum and hit "Stop" to stop (or go to a different page on the drop-down menu).
+###Sumedh's Drum
 
 
+##Demonstration
 
 [vib_s_diagram]: http://i.imgur.com/I4mfmw4.png
 [vib_s_table]: http://i.imgur.com/O1WhZPy.png
