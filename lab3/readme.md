@@ -26,7 +26,8 @@ The vibration sensor attached to Joel's drum's arm serves as a switch as shown i
 *figure Y: calibration table for vibration sensor*<br>
 When the analogRead() value is detected to have dropped significantly, Joel's drum is in motion and thus Mark's drum activates itself for one beat.<br>
 ###Photoresistor
-When the drum passes between the LED and photoresistor, the photoresistor's resistance drops, meaning a larger portion of the voltage drop in the divider circuit is across the 10K resistor.  Thus, the analogRead() output increases. Calibrated values are shown in the table in figure A.<br>
+When Joel's drum stick moves between the LED and photoresistor, the photoresistor's resistance drops, leading to an increase in the voltage across the 10K ohm resistor and thus an increase in the value of analogRead().  Due to a reading delay, we calibrated there to be a delay between the spike in the output voltage of the circuit and the actual motion of the arm (output voltage is read to be higher some time after the arm moves).  We calibrated analogRead() to increase by a factor of at least 100.  The timing diagram shown in figure K demonstrates this concept. <br>
+![alt text][photo_cal]
 ##Operation
 ###Joel's Drum
 Joel's drum serves as the reference drum for the jam band and thus is controlled in the same way discussed [here](https://github.com/jpark6694/EE-183DA-LAB-2-Electromechanical-Musical-Instrument-).
@@ -44,3 +45,4 @@ The following video shows the jam band in operation.<br>
 [vib_s_attach]: http://i.imgur.com/RERq4f6.png
 [photo_attach]: http://i.imgur.com/wd1oQgH.png
 [photo_circuit]: http://i.imgur.com/O9Ccs9c.png
+[photo_cal]: http://i.imgur.com/0MxYLFj.png
