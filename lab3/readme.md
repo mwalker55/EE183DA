@@ -4,10 +4,9 @@ This jam band powered by the ESP-8266 constitutes Team Velma's submission for la
 ##Construction
 First, construct the three constiuent instruments:<br>
 1. [Mark's Arduino Drum](https://github.com/mwalker55/EE183DA/tree/master/lab2)<br>
-2. [Joel's Drum](placeholderlink)<br>
-3. [Sumedh's Drum](placeholderlink)<br>
-
-Joel's drum will act as the reference drum for the jam band.  For sensing it for Mark's drum, attach the vibration sensor to the bottom of the drum stick as shown in figure N.
+2. [Joel's Drum](https://github.com/jpark6694/EE-183DA-LAB-2-Electromechanical-Musical-Instrument-)<br>
+3. [Sumedh's Drum](https://github.com/sumedhvijay/Drum)<br>
+Joel's drum will act as the reference drum for the jam band.  For sensing it for Mark's drum, attach the vibration sensor to the bottom of the drum stick as shown in figure N.<br>
 ![alt text][vib_s_attach]<br>
 *figure N: vibration sensor taped onto arm of Joel's drum*<br>
 Attach this vibration sensor into the circuit diagram shown in figure X, using the 5V source, A0 and GND from Mark's drum's ESP8266.  In implementing the diagram, use the vibration sensor as the switch.<br>
@@ -15,8 +14,11 @@ Attach this vibration sensor into the circuit diagram shown in figure X, using t
 *figure X: circuit diagram for vibration sensor*<br>
 On the base that Joel's drum strikes against, attach a LED on one side of the point that the drum strikes and attach a photoresistor on the other end as shown in figure R.<br>
 ![alt text][photo_attach]<br>
-*figure R: LED and photoresistor opposite from one another at strike point*
-
+*figure R: LED and photoresistor opposite from one another at strike point*<br>
+Attach the LED and photoresistor into the following two circuits shown in figure A, using the 5V source on Sumedh's drum's ESP8266 as Vcc and setting VOUT2 to be A0 on Sumedh's drum's ESP8266.<br>
+![alt text][photo_circuit]<br>
+*figure A: circuit diagrams for LED and photoresistor*<br>
+For the 
 ##Theory of Operation
 ###Vibration Sensor
 The vibration sensor attached to Joel's drum's arm serves as a switch as shown in the circuit diagram in figure X above.  When Joel's drum is stationary, the vibration sensor serves as an open switch and thus the analog output value is high.  When Joel's drum is in motion, the vibration sensor serves as a closed switch and thus the analog output value drops.  These changes were calibrated for control purposes and are shown in table in figure Y.<br>
@@ -39,3 +41,4 @@ Mark's drum is operated in a similar manner as [the original](https://github.com
 [vib_s_table]: http://i.imgur.com/tSs41a3.png
 [vib_s_attach]: http://i.imgur.com/RERq4f6.png
 [photo_attach]: http://i.imgur.com/wd1oQgH.png
+[photo_circuit]: http://i.imgur.com/O9Ccs9c.png
