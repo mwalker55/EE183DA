@@ -18,7 +18,7 @@ On the base that Joel's drum strikes against, attach a LED on one side of the po
 Attach the LED and photoresistor into the following two circuits shown in figure A, using the 5V source on Sumedh's drum's ESP8266 as Vcc and setting VOUT2 to be A0 on Sumedh's drum's ESP8266.<br>
 ![alt text][photo_circuit]<br>
 *figure A: circuit diagrams for LED and photoresistor*<br>
-For the 
+For the Arduino sketches, Joel's remains unchanged from the sketch found in the link above.  For Mark's drum, use the mark_drum.ino sketch found in this repo and for Sumedh's drum use the sumedh_drum.ino sketch found in this repo.
 ##Theory of Operation
 ###Vibration Sensor
 The vibration sensor attached to Joel's drum's arm serves as a switch as shown in the circuit diagram in figure X above.  When Joel's drum is stationary, the vibration sensor serves as an open switch and thus the analog output value is high.  When Joel's drum is in motion, the vibration sensor serves as a closed switch and thus the analog output value drops.  These changes were calibrated for control purposes and are shown in table in figure Y.<br>
