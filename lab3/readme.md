@@ -39,7 +39,7 @@ For Sumedh's drum, the sketch will automatically continuously sense once uploade
 
 ##Demonstration
 The following video shows the jam band in operation.<br>
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/40Gdmw4ancg/0.jpg)](http://www.youtube.com/watch?v=40Gdmw4ancg)
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/f38w0sMBbEM/0.jpg)](http://www.youtube.com/watch?v=f38w0sMBbEM)
 
 [vib_s_diagram]: http://i.imgur.com/u5hwclw.png
 [vib_s_table]: http://i.imgur.com/tSs41a3.png
