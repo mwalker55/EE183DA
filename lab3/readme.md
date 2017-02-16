@@ -19,4 +19,4 @@ When the analogRead() value is detected to have dropped significantly, Joel's dr
 
 
 [vib_s_diagram]: http://i.imgur.com/I4mfmw4.png
-[vib_s_table]: http://i.imgur.com/xPBDerO.png
+[vib_s_table]: http://i.imgur.com/O1WhZPy.png
