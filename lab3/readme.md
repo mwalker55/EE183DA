@@ -26,7 +26,7 @@ The vibration sensor attached to Joel's drum's arm serves as a switch as shown i
 *figure Y: calibration table for vibration sensor*<br>
 When the analogRead() value is detected to have dropped significantly, Joel's drum is in motion and thus Mark's drum activates itself for one beat.<br>
 ###Photoresistor
-
+When the drum passes between the LED and photoresistor, the photoresistor's resistance drops, meaning a larger portion of the voltage drop in the divider circuit is across the 10K resistor.  Thus, the analogRead() output increases. Calibrated values are shown in the table in figure A.<br>
 ##Operation
 ###Joel's Drum
 Joel's drum serves as the reference drum for the jam band and thus is controlled in the same way as detailed [here](https://github.com/jpark6694/EE-183DA-LAB-2-Electromechanical-Musical-Instrument-).
@@ -36,6 +36,8 @@ Mark's drum is operated in a similar manner as [the original](https://github.com
 
 
 ##Demonstration
+The following video shows the jam band in operation.<br>
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/40Gdmw4ancg/0.jpg)](http://www.youtube.com/watch?v=40Gdmw4ancg)
 
 [vib_s_diagram]: http://i.imgur.com/u5hwclw.png
 [vib_s_table]: http://i.imgur.com/tSs41a3.png
