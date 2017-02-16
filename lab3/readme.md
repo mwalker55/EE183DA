@@ -21,7 +21,7 @@ When the analogRead() value is detected to have dropped significantly, Joel's dr
 ###Joel's Drum
 Joel's drum serves as the reference drum for the jam band and thus is controlled in the same way as detailed [here](placeholderlink).
 ###Mark's Drum
-Mark's drum is operated in a similar manner as [the original](https://github.com/mwalker55/EE183DA/tree/master/lab2).  The website's drop-down menu will contain one new option: jam band sensing.  On that page, hit "Sense" to begin sensing Joel's drum and hit "Stop" to stop (or go to a different page on the drop-down menu).
+Mark's drum is operated in a similar manner as [the original](https://github.com/mwalker55/EE183DA/tree/master/lab2), however the mark_drum.ino sketch found in this repository should be used as the website instead.  Instructions for connecting to the ESP-8266 and accessing its website can be found on the original's documentation.  The website's drop-down menu will now contain one new option: jam band sensing.  On that page, hit "Sense" to begin sensing Joel's drum and hit "Stop" to stop (or go to a different page on the drop-down menu).
 ###Sumedh's Drum
 
 
