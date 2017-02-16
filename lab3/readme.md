@@ -29,7 +29,7 @@ When the analogRead() value is detected to have dropped significantly, Joel's dr
 When the drum passes between the LED and photoresistor, the photoresistor's resistance drops, meaning a larger portion of the voltage drop in the divider circuit is across the 10K resistor.  Thus, the analogRead() output increases. Calibrated values are shown in the table in figure A.<br>
 ##Operation
 ###Joel's Drum
-Joel's drum serves as the reference drum for the jam band and thus is controlled in the same way as detailed [here](https://github.com/jpark6694/EE-183DA-LAB-2-Electromechanical-Musical-Instrument-).
+Joel's drum serves as the reference drum for the jam band and thus is controlled in the same way discussed [here](https://github.com/jpark6694/EE-183DA-LAB-2-Electromechanical-Musical-Instrument-).
 ###Mark's Drum
 Mark's drum is operated in a similar manner as [the original](https://github.com/mwalker55/EE183DA/tree/master/lab2), however the mark_drum.ino sketch found in this repository should be used as the website instead.  Instructions for connecting to the ESP-8266 and accessing its website can be found on the original's documentation.  The website's drop-down menu will now contain one new option: jam band sensing.  On that page, hit "Sense" to begin sensing Joel's drum and hit "Stop" to stop (or go to a different page on the drop-down menu).
 ###Sumedh's Drum
