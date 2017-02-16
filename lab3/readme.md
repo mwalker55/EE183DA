@@ -24,7 +24,7 @@ For the Arduino sketches, Joel's remains unchanged from the sketch found in the 
 The vibration sensor attached to Joel's drum's arm serves as a switch as shown in the circuit diagram in figure X above.  When Joel's drum is stationary, the vibration sensor serves as an open switch and thus the analog output value is high.  When Joel's drum is in motion, the vibration sensor serves as a closed switch and thus the analog output value drops.  These changes were calibrated for control purposes and are shown in table in figure Y.<br>
 ![alt text][vib_s_table]<br>
 *figure Y: calibration table for vibration sensor*<br>
-When the analogRead() value is detected to have dropped significantly, Joel's drum is in motion and thus Mark's drum activates itself for one beat.<br>
+When the analogRead() value is detected to have dropped significantly, Joel's drum is in motion and thus Mark's drum activates itself for a few hits to back Joel's drum's beat.<br>
 ###Photoresistor
 When Joel's drum stick moves between the LED and photoresistor, the photoresistor's resistance drops, leading to an increase in the voltage across the 10K ohm resistor and thus an increase in the value of analogRead().  Due to a reading delay, we calibrated there to be a delay between the spike in the output voltage of the circuit and the actual motion of the arm (output voltage is read to be higher some time after the arm moves).  We calibrated analogRead() to increase by a factor of at least 100.  The timing diagram shown in figure K demonstrates this concept. <br>
 ![alt text][photo_cal]<br>
