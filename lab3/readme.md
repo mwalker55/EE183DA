@@ -27,5 +27,5 @@ Mark's drum is operated in a similar manner as [the original](https://github.com
 
 ##Demonstration
 
-[vib_s_diagram]: http://i.imgur.com/I4mfmw4.png
-[vib_s_table]: http://i.imgur.com/O1WhZPy.png
+[vib_s_diagram]: http://i.imgur.com/u5hwclw.png
+[vib_s_table]: http://i.imgur.com/tSs41a3.png
