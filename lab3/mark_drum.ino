@@ -83,8 +83,8 @@ void setup() {
        sense_page += "<!DOCTYPE HTML>\r\n<html>\r\n";
        sense_page += "<h2>Mark's Arduino Drum</h2><h3>Jam Band Sensing</h3>";
        sense_page += "<p>Press Sense below if the vibration sensor is attached to begin detecting play from the autonomous drum.  Hit Stop to stop sensing.</p>";
-       sense_page += "<input type=\"button\" name=\"b1\" value=\"Sense\" onclick=\"location.href='/start'\">&nbsp;";
-       sense_page += "<input type=\"button\" name=\"b2\" value=\"Stop\" onclick=\"location.href='/stop'\"><br><br>";
+       sense_page += "<input type=\"button\" name=\"b1\" value=\"Sense\" onclick=\"location.href='/sense/start'\">&nbsp;";
+       sense_page += "<input type=\"button\" name=\"b2\" value=\"Stop\" onclick=\"location.href='/sense/stop'\"><br><br>";
        sense_page += "<select name=\"main-menu\" onchange=\"location.href=this.options[this.selectedIndex].value;\">";
        sense_page += "<option value=\"/index\">Home Page</option>";
        sense_page += "<option value=\"/manual\">Manual Control</option>";
@@ -105,7 +105,7 @@ void loop() {
     if(sensing){
       inp_new = analogRead(A0);
       delay(1);
-      if(inp_last > 800 && inp_new < 300){
+      if(inp_last > 1000 && inp_new < 200){
         strike();
       }
       inp_last = inp_new;
@@ -251,9 +251,9 @@ void playBeatSeq(){
 void strike() {
   servo.attach(D6);
   servo.write(30);
-  delay(30);
+  delay(90);
   servo.write(80);
-  delay(30);
+  delay(90);
   servo.detach();
 }
 
