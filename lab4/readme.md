@@ -52,8 +52,16 @@ We can test our state estimator by simulating various trajectories and seeing ho
 Trajectory | Sensor-only MSE | Combined-estimate MSE
 --- | --- | ---
 [1](http://i.imgur.com/xBcYvyk.png) | .0047 | .0037
+[2](http://i.imgur.com/6Obb6Mp.png) | .0049 | .0047
+[3](http://i.imgur.com/jZCEJUs.png) | .0071 | .0051
+[4](http://i.imgur.com/1TFVmGD.png) | .0054 | .0038
+[5](http://i.imgur.com/8bKroFI.png) | .0050 | .0041
 
+As is visible, on every trajectory tested, the mean-squared error of the combined-estimate is lower than the accurate of just the sensor-only estimate and thus is more accurate.  However, it is still fairly error prone and as is clearly visible on the trajectory graphs, the combined value is still significantly off from the true estimate.  That said, the system presents a better state estimate than simply going off of the noisy sensor outputs and is not computationally expensive to implement and thus is a semi-viable state estimator.  
 
+To test this simulator and state estimator on your own, first clone this repo.  In estimator.m, there is a variable named "control_seq", which is an nx3 matrix.  On any row, the first column represents the left wheel PWM input (either 2, 1.5 or 1), the second column represents the right wheel PWM input (either 2, 1.5 or 1) and the third column represents the number of 2ms cycles you wish to use this input for (positive integer).  
+##Conclusion
+Ultimately, we were able to produce a semi-competent state estimator by averaging a noiseless model of our system with the measured very noisy sensor inputs of our system in order to attempt to estimate the middle ground, the somewhat noise corrupted true state of the system.  While we found that this method of state estimation does reduce the error in the state estimate, it does not provide a perfect state estimate and has suspect practical usability.  Given more time, a different state estimation algorithm such as the Kalman filter could have been applied to our system in order to produce more accurate and usable results.
 [car]: http://i.imgur.com/DzEnqye.png
 [equation1]: http://i.imgur.com/oc8IY5Q.png
 [equation2]: http://i.imgur.com/SSDD72g.png
