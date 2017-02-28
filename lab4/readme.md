@@ -15,7 +15,7 @@ The two servos on the vehicle take in a PWM signal and then process the input si
 During operation of the vehicle, we assume that the user will only send signals with widths of 1ms, 1.5ms or 2ms (this assumption is elaborated later on).  Due to both limitations of the microcontroller sending the PWM signal, limitations of the servo and loss on the wire, we assume that the final interpreted PWM signal will never be exactly 1ms, 1.5ms or 2ms.  Instead, we model that for each input width there is a range of values which the final interpreted PWM signal will fall on:<br>
 + 1ms: final value will lie between 1ms and 1.1ms 
 + 1.5ms: final value will lie between 1.49ms and 1.51ms
-+ 2ms: final value will lie between 1.9ms and 2ms  
++ 2ms: final value will lie between 1.9ms and 2ms<br>
 Note that for 1.5ms, the final interpreted value is much closer to the actual input than for the other options.  This is due to the consideration of the deadband around 1.5ms input which ensures that at values close to 1.5ms there is no motion; we consider this deadband by putting it entirely at 1.5ms and moving up the values that would have been immediately on each side of the deadband to be adjacent to 1.5ms.  For both 1ms and 2ms, it is possible that the signal could be less than 1ms or greater than 2ms; however, we consider any pulse width reasonably close to but lower than 1ms to be equivalent to 1ms and pulse widths greater than 2ms will simply blend into the next PWM period.  
 ###Generation of RPM
 Through some testing with a sample load and the rotary encoder, we determined that the max RPM achieved at both 1ms and 2ms was roughly 65RPM.  
