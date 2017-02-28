@@ -63,11 +63,11 @@ To test this simulator and state estimator on your own, first clone this repo.  
 ##Conclusion
 Ultimately, we were able to produce a semi-competent state estimator by averaging a noiseless model of our system with the measured very noisy sensor inputs of our system in order to attempt to estimate the middle ground, the somewhat noise corrupted true state of the system.  While we found that this method of state estimation does reduce the error in the state estimate, it does not provide a perfect state estimate and has suspect practical usability.  Given more time, a different state estimation algorithm such as the Kalman filter could have been applied to our system in order to produce more accurate and usable results.  Also, the assumption of equal weighting between the noiseless state estimate and the noisy sensor state estimate is likely unrealistic (i.e. each constitutes 1/2 of the final state estimation); more fine tuned weighting factors could be computed to increase the accuracy (e.g. have the noiseless state estimate contribute 3/4 of the final state estimation and have the sensed state estimate be 1/4).
 ##Appendix A: Trajectory Control Sequences
-Trajectory 1: control_seq = [2 2 15; 1 2 30; 2 1 90; 1 1 30; 1 2 30; 2 2 50; 1 2 5; 2 2 10; 2 1 50; 2 2 10; 1.5 1.5 5; 2 1 10; 2 2 15; 1 2 5; 2 2 10; 2 1 30];
-Trajectory 2: control_seq = [1 1 10; 2 1 50; 2 2 10; 1 2 60; 2 2 5; 2 1 30];
-Trajectory 3: control_seq = [2 1 50; 2 2 5; 1 2 10; 1 1 10; 2 2 5; 1 1 10];
-Trajectory 4: control_seq = [1 1 30; 2 1 10; 1 1 5; 1 2 33; 2 2 6; 1 2 5];
-Trajectory 5: control_seq = [1 2 13; 2 1 25; 1 1 5; 2 1 50; 2 2 10; 1 2 36; 2 2 10; 1 2 6];
+Trajectory 1: control_seq = [2 2 15; 1 2 30; 2 1 90; 1 1 30; 1 2 30; 2 2 50; 1 2 5; 2 2 10; 2 1 50; 2 2 10; 1.5 1.5 5; 2 1 10; 2 2 15; 1 2 5; 2 2 10; 2 1 30];<br>
+Trajectory 2: control_seq = [1 1 10; 2 1 50; 2 2 10; 1 2 60; 2 2 5; 2 1 30];<br>
+Trajectory 3: control_seq = [2 1 50; 2 2 5; 1 2 10; 1 1 10; 2 2 5; 1 1 10];<br>
+Trajectory 4: control_seq = [1 1 30; 2 1 10; 1 1 5; 1 2 33; 2 2 6; 1 2 5];<br>
+Trajectory 5: control_seq = [1 2 13; 2 1 25; 1 1 5; 2 1 50; 2 2 10; 1 2 36; 2 2 10; 1 2 6];<br>
 
 
 [car]: http://i.imgur.com/DzEnqye.png
