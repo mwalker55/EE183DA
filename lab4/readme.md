@@ -7,7 +7,7 @@ In this lab, we consider a small, two-wheeled car controlled by a microcontrolle
 This car is driven by two continuous servos, one for each wheel.  Each servo is driven by a pulse-width modulation (PWM) input from the on-board microcontroller.  When the servos are driven, the state of the vehicle, consisting of the x,y coordinate relative to some origin of the car, its rotation relative to some axis, and the time derivatives of those three values, changes.  Our goal in this lab is to be able to measure the state of the vehicle as accurately as possible given the inputs sent to the servos as well as noisy sensor data that provides a partial understanding of the vehicle state.
 ##Simulation
 Rather than physically construct this small, two-wheeled car, our team chose to simulate its operation.  This simulation operates simply at a high level: receive PWM inputs, add some noise to these inputs, use the noisy PWM inputs to generate the actual RPM and direction of each servo, and lastly model the sensing of the RPM/direction data.  
-###Sensing
+###Sensor Choice
 The original lab specification provides for IR sensors attached to each servo that produce a HIGH/LOW signal based on the position of the wheel, which had twenty alternating white/black colored circular sectors.  We found that this was not an ideal sensing solution for state estimation; a discussion on this is included later in this report.<br>
 Instead of the IR sensor, our group decided to simulate the use of a rotary encoder.  A rotary encoder provides a measure of both the RPM of the shaft it is attached to (after some simple processing) as well as the direction of shaft rotation.  The rotary encoder we chose to simulate can measure 2500 pulses per revolution, meaning that it can measure to the nearest .0004 of a rotation of the attached shaft.  We chose to simulate the presence of a rotary encoder on each servo output shaft, giving us an RPM for each wheel.
 ###PWM Inputs
@@ -19,5 +19,18 @@ During operation of the vehicle, we assume that the user will only send signals 
 
 Note that for 1.5ms, the final interpreted value is much closer to the actual input than for the other options.  This is due to the consideration of the deadband around 1.5ms input which ensures that at values close to 1.5ms there is no motion; we consider this deadband by putting it entirely at 1.5ms and moving up the values that would have been immediately on each side of the deadband to be adjacent to 1.5ms.  For both 1ms and 2ms, it is possible that the signal could be less than 1ms or greater than 2ms; however, we consider any pulse width reasonably close to but lower than 1ms to be equivalent to 1ms and pulse widths greater than 2ms will simply blend into the next PWM period.
 ###Generation of RPM
-Through some testing with a sample load and the rotary encoder, we determined that the max RPM achieved at both 1ms and 2ms was roughly 65RPM.  
+Through some testing with a sample load and the rotary encoder, we determined that the max RPM achieved at both 1ms and 2ms was roughly 65RPM.  We classify a positive RPM value to be attained when the servo is rotating counterclockwise (i.e. pulse width > 1.5ms) and a negative RPM value to be attained when the servo is rotating clockwise (i.e. pulse width < 1.5ms).  Thus, we can generate a mathematical equation to convert from PWM input in each servo to RPM in each servo:<br>
+[alt text][equation1]<br>
+At each 2ms step, we read the pulse width input, corrupt it as described above, and generate the true RPM of each servo. 
+###Sensing of RPM
+As discussed previously, the RPM is instantaneously sensed by the rotary encoder which is then pinged.  We assume that each servo will base its RPM based on the previous cycle's PWM input and that it will instanteously update to its new RPM at the start of the next cycle.  We assume that the rotary encoder is sensitive enough to measure this new change and provide an updated result within a negligible time span.  However, we assume that this limited sampling of the new RPM of each servo introduces a large error to the rotary encoder and that the sensed RPM will be +/- 10% of the true value rounded to the nearest .0004RPM to meet the measurement limitation of the rotary encoder.  Thus, the simulated sensor output consists of the sensed RPM at the end of each 2ms cycle accurate within 10% of the true value and precise to the nearest .0004RPM.
+##State Estimation
+Our goal is to use the noisy sensor measurements as well as the system inputs (before the addition of noise) to create a picture of the robot's state that is as accurate as possible.  The first step toward this goal is fully defining the state of the robot and determining how we can transition from the servo RPMs to the state of the robot.
+###State Description
+The robot's state consists of the position of the robot, {x,y}, its orientation, theta, and the velocities of those 3 variables.  {x,y} are the horizontal and vertical displacements of some center point of the vehicle from the origin respectively and theta is the direction the car is pointing measured as a rotation from the right horizontal axis.  The 3 velocities are the instantaneous rates at which these state variables are changing.  Figure 2 provides a picture demonstrating {x, y, theta}.<br>
+[alt text][defxyt]<br>
+*figure 2: demonstration of x, y and theta*<br>
+
 [car]: http://i.imgur.com/DzEnqye.png
+[equation1]: http://i.imgur.com/oc8IY5Q.png
+[defxyt]: http://i.imgur.com/w2YaFh0.png
