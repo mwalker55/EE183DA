@@ -47,22 +47,28 @@ In no case can we expect the motion of the car to be non-existent.  Due to PWM f
 ###State Estimation Method
 When our simulator is ran with our input, we receive back two arrays of values: the true left/right wheel RPMs at the end of each cycle as well as the noisy left/right wheel RPMs sensed by our rotary encoder.  Beginning with a zeroed out initial state, we propagate using these RPM measurements to achieve a state observation at each 2ms point.  We find that the true state of the car at each point differs from the observed value due to the noise introduced in sensing and the rotary encoder being able to measure to only the nearest .0004 rotation (mostly the former source).  Our goal is to figure out a method of generating a state estimate at each point that is more accurate than simply following the state estimate given by the noisy sensors.  The option we decided to do this was to use a model based state estimator.  In effect, we take the inputs given to the system, apply the mean noise whenever noise is added and generate a brand new state estimation.  For instance, if we drove the system with an input of (2ms, 1ms), the state estimator would propagate using (1.95ms, 1.05ms), which are the means in the specified 1.9-2ms and 1-1.1ms ranges.  At the sensing level, we assume that there is no sensing noise and that we always measure at the exact middle of that +- 10% uncertainty band.  This provides us with a state estimation that is practically devoid of any system noise.  This compares with the true state observations, which contain more noise due to the random 1.9ms-2ms/1.49ms-1.51ms/1-1.1ms bands and the even noisier sensor observation which includes both the process and sensing noise.  Each estimate will contribute some fraction to this final state estimate; we assume that the contribution factor for each is 1/2 and thus compute our state estimate as the arithmetic mean of the noiseless and sensed state estimates.
 ##Evaluation of State Estimator 
-We can test our state estimator by simulating various trajectories and seeing how accurate our state estimation is.  To measure accuracy, we will use the mean squared error of the state estimation.  Discussion of mean squared error as a measure can be found [here](https://en.wikipedia.org/wiki/Mean_squared_error).  In each of the five trajectories simulated, I found that the state estimation computed as an average of the noiseless state estimate and the sensed state estimate always gives a lower mean squared error when compared to just the sensed state estimate.  I have included a picture for each simulated trajectory showing the three {x,y} trajectories computed.  In appendix A, the coded control sequences used for each trajectory can be found.
+We can test our state estimator by simulating various trajectories and seeing how accurate our state estimation is.  To measure accuracy, we will use the mean squared error of the state estimation.  Discussion of mean squared error as a measure can be found [here](https://en.wikipedia.org/wiki/Mean_squared_error).  In each of the five trajectories simulated, I found that the state estimation computed as an average of the noiseless state estimate and the sensed state estimate always gives a lower mean squared error when compared to just the sensed state estimate.  I have included a picture for each simulated trajectory showing the three {x,y} trajectories computed. 
 
 Trajectory | Sensor-only MSE | Combined-estimate MSE
 --- | --- | ---
-[1]() | .0047 | .0037
-[2](http://i.imgur.com/6Obb6Mp.png) | .0049 | .0047
-[3](http://i.imgur.com/jZCEJUs.png) | .0071 | .0051
-[4](http://i.imgur.com/1TFVmGD.png) | .0054 | .0038
-[5](http://i.imgur.com/8bKroFI.png) | .0050 | .0041
+[1](http://oi66.tinypic.com/2nhqdf4.jpg) | .0050 | .0038
+[2](http://oi67.tinypic.com/9qir0y.jpg) | .0022 | .0015
+[3](http://oi67.tinypic.com/aw9d3d.jpg) | .0058 | .0048
+[4](http://oi63.tinypic.com/4r55dt.jpg) | .0071 | .0041
+[5](http://oi63.tinypic.com/28lvvhj.jpg) | .0030 | .0016
 
 As is visible, on every trajectory tested, the mean-squared error of the combined-estimate is lower than the accurate of just the sensor-only estimate and thus is more accurate.  However, it is still fairly error prone and as is clearly visible on the trajectory graphs, the combined value is still significantly off from the true estimate.  That said, the system presents a better state estimate than simply going off of the noisy sensor outputs and is not computationally expensive to implement and thus is a semi-viable state estimator.  
 
-To test this simulator and state estimator on your own, first clone this repo.  In estimator.m, there is a variable named "control_seq", which is an nx3 matrix.  On any row, the first column represents the left wheel PWM input (either 2, 1.5 or 1), the second column represents the right wheel PWM input (either 2, 1.5 or 1) and the third column represents the number of 2ms cycles you wish to use this input for (positive integer).  
+To test this simulator and state estimator on your own, first clone this repo.  In estimator.m, there is a variable named "control_seq", which is an nx3 matrix.  On any row, the first column represents the left wheel PWM input (either 2, 1.5 or 1), the second column represents the right wheel PWM input (either 2, 1.5 or 1) and the third column represents the number of 2ms cycles you wish to use this input for (positive integer).  The trajectories for the five experiments above can be found in appendix A.
 ##Conclusion
 Ultimately, we were able to produce a semi-competent state estimator by averaging a noiseless model of our system with the measured very noisy sensor inputs of our system in order to attempt to estimate the middle ground, the somewhat noise corrupted true state of the system.  While we found that this method of state estimation does reduce the error in the state estimate, it does not provide a perfect state estimate and has suspect practical usability.  Given more time, a different state estimation algorithm such as the Kalman filter could have been applied to our system in order to produce more accurate and usable results.  Also, the assumption of equal weighting between the noiseless state estimate and the noisy sensor state estimate is likely unrealistic (i.e. each constitutes 1/2 of the final state estimation); more fine tuned weighting factors could be computed to increase the accuracy (e.g. have the noiseless state estimate contribute 3/4 of the final state estimation and have the sensed state estimate be 1/4).
 ##Appendix A: Trajectory Control Sequences
+Trajectory 1: control_seq = [2 2 15; 1 2 30; 2 1 90; 1 1 30; 1 2 30; 2 2 50; 1 2 5; 2 2 10; 2 1 50; 2 2 10; 1.5 1.5 5; 2 1 10; 2 2 15; 1 2 5; 2 2 10; 2 1 30];
+Trajectory 2: control_seq = [1 1 10; 2 1 50; 2 2 10; 1 2 60; 2 2 5; 2 1 30];
+Trajectory 3: control_seq = [2 1 50; 2 2 5; 1 2 10; 1 1 10; 2 2 5; 1 1 10];
+Trajectory 4: control_seq = [1 1 30; 2 1 10; 1 1 5; 1 2 33; 2 2 6; 1 2 5];
+Trajectory 5: 
+
 [car]: http://i.imgur.com/DzEnqye.png
 [equation1]: http://i.imgur.com/oc8IY5Q.png
 [equation2]: http://i.imgur.com/SSDD72g.png
