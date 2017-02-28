@@ -47,9 +47,9 @@ In no case can we expect the motion of the car to be non-existent.  Due to PWM f
 ###State Estimation Method
 When our simulator is ran with our input, we receive back two arrays of values: the true left/right wheel RPMs at the end of each cycle as well as the noisy left/right wheel RPMs sensed by our rotary encoder.  Beginning with a zeroed out initial state, we propagate using these RPM measurements to achieve a state observation at each 2ms point.  We find that the true state of the car at each point differs from the observed value due to the noise introduced in sensing and the rotary encoder being able to measure to only the nearest .0004 rotation (mostly the former source).  Our goal is to figure out a method of generating a state estimate at each point that is more accurate than simply following the state estimate given by the noisy sensors.  The option we decided to do this was to use a model based state estimator.  In effect, we take the inputs given to the system, apply the mean noise whenever noise is added and generate a brand new state estimation.  For instance, if we drove the system with an input of (2ms, 1ms), the state estimator would propagate using (1.95ms, 1.05ms), which are the means in the specified 1.9-2ms and 1-1.1ms ranges.  At the sensing level, we assume that there is no sensing noise and that we always measure at the exact middle of that +- 10% uncertainty band.  This provides us with a state estimation that is practically devoid of any system noise.  This compares with the true state observations, which contain more noise due to the random 1.9ms-2ms/1.49ms-1.51ms/1-1.1ms bands and the even noisier sensor observation which includes both the process and sensing noise.  Each estimate will contribute some fraction to this final state estimate; we assume that the contribution factor for each is 1/2 and thus compute our state estimate as the arithmetic mean of the noiseless and sensed state estimates.
 ##Evaluation of State Estimator 
-We can test our state estimator by simulating various trajectories and seeing how accurate our state estimation is.  To measure accuracy, we will use the mean squared error of the state estimation.  Discussion of mean squared error as a measure can be found [here](https://en.wikipedia.org/wiki/Mean_squared_error).  In each of the five trajectories simulated, I found that the state estimation computed as an average of the noiseless state estimate and the sensed state estimate always gives a lower mean squared error when compared to just the sensed state estimate.  I have included a picture for each simulated trajectory showing the three {x,y} trajectories computed. 
+We can test our state estimator by simulating various trajectories and seeing how accurate our state estimation is.  To measure accuracy, we will use the mean squared error of the state estimation.  Discussion of mean squared error as a measure can be found [here](https://en.wikipedia.org/wiki/Mean_squared_error).  We simulated five separate trajectories for the robot to follow for 30 trials each and then generated average MSE values over the 30 trials for both the sensed state estimate and the combined state estimate.  These average MSEs are presented in the table below along with a sample picture showing what the input trajectory looks like.
 
-Trajectory | Sensor-only MSE | Combined-estimate MSE
+Trajectory | Average Sensor Estimate MSE | Average Combined Estimate MSE
 --- | --- | ---
 [1](http://oi66.tinypic.com/2nhqdf4.jpg) | .0050 | .0038
 [2](http://oi67.tinypic.com/9qir0y.jpg) | .0022 | .0015
@@ -67,7 +67,8 @@ Trajectory 1: control_seq = [2 2 15; 1 2 30; 2 1 90; 1 1 30; 1 2 30; 2 2 50; 1 2
 Trajectory 2: control_seq = [1 1 10; 2 1 50; 2 2 10; 1 2 60; 2 2 5; 2 1 30];
 Trajectory 3: control_seq = [2 1 50; 2 2 5; 1 2 10; 1 1 10; 2 2 5; 1 1 10];
 Trajectory 4: control_seq = [1 1 30; 2 1 10; 1 1 5; 1 2 33; 2 2 6; 1 2 5];
-Trajectory 5: 
+Trajectory 5: control_seq = [1 2 13; 2 1 25; 1 1 5; 2 1 50; 2 2 10; 1 2 36; 2 2 10; 1 2 6];
+
 
 [car]: http://i.imgur.com/DzEnqye.png
 [equation1]: http://i.imgur.com/oc8IY5Q.png
