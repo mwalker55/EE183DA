@@ -29,8 +29,9 @@ Our goal is to use the noisy sensor measurements as well as the system inputs (b
 ###State Description
 The robot's state consists of the position of the robot, {x,y}, its orientation, theta, and the velocities of those 3 variables.  {x,y} are the horizontal and vertical displacements of some center point of the vehicle from the origin respectively and theta is the direction the car is pointing measured as a rotation from the right horizontal axis.  The 3 velocities are the instantaneous rates at which these state variables are changing.  Figure 2 provides a picture demonstrating {x, y, theta}.<br>
 ![alt text][defxyt]<br>
-*figure 2: demonstration of x, y and theta*<br>
-
+*figure 2: demonstration of x, y, and theta*<br>
+###State Evolution: Position and Orientation
+We need a way to evolve the state of the car over time.  At each step, the state of the vehicle will be a function of both its previous state and previous input.  We assume that the initial state of the car is initially all 0: the car is at the origin, pointing right horizontally and has no velocity.  For the first two milliseconds, the vehicle is defined by this state as the servo reads the PWM input.  At t=2ms, the servos are driven: some of the velocities may update, but the vehicle has not moved over that time.  At t=4ms, the state of the vehicle begins to take shape: the position and orientation of the vehicle will be updated based on the previous velocities of the system and the velocities will be updated based on the PWM read over the previous 2ms.  This state estimation process continues over the entire input period for the vehicle.  The relations are given in equation format below.  
 [car]: http://i.imgur.com/DzEnqye.png
 [equation1]: http://i.imgur.com/oc8IY5Q.png
 [defxyt]: http://i.imgur.com/w2YaFh0.png
