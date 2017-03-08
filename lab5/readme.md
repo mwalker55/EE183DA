@@ -14,7 +14,7 @@ At a high level, the trajectory controller takes in a endpoint for the robot to 
 The trajectory planner takes in both the current position and goal position.  It then generates a three step control sequence:  
 -rotation needed to point from current position to goal position  
 -forward linear motion from current position to goal position once pointed
--rotation to theta specified in goal position  
+-rotation to theta specified in goal position
 
 For each of the three steps, we assume ideal speeds both in rotation and linear motion (i.e. the wheels rotate at exactly 65RPM).  The number of 2ms cycles needed for these are computed by dividing the amount of rotation/linear motion needed at each step by the ideal rotation/linear distance completed in 2ms and rounding to the nearest integer.  Thus, the trajectory planner will rarely provide a perfect method of moving to the desired endpoint since it has a 2ms resolution.  Furthermore, the wheels will likely not spin at exactly 65RPM, introducing further error.  These two sources of error are the reason that the trajectory controller must repeat the process of generating a trajectory multiple times - the result will likely not be good enough after the first iteration.  
 ##Results
