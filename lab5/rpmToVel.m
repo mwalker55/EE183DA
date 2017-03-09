@@ -1,4 +1,6 @@
 function [ dx, dy, dt ] = rpmToVel(RPM_left, RPM_right, theta)
+    %input: RPM of each wheel and current direction car is facing
+    %output: x,y, theta velocities
     wheel_rad = 50E-3;
     axle_rad = 45E-3;
     if(RPM_left > 0 && RPM_right < 0) %forward motion
